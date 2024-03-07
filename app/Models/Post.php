@@ -15,4 +15,11 @@ class Post extends Model
         'content'
     ];
 
+    public function type(){
+        return $this->belongsTo(Type::class);
+        //I Belong to you
+        //You Belong to me la la laaaa
+    }
+
+
 }
