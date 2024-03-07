@@ -10,6 +10,8 @@ use App\Models\Post;
 
 // helpers
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Schema;
+
 
 class PostSeeder extends Seeder
 {
@@ -18,7 +20,11 @@ class PostSeeder extends Seeder
      */
     public function run(): void
         {
-            Post::truncate();
+            // Post::truncate();
+            Schema::withoutForeignKeyConstraints(function () {
+                Post::truncate();
+            });
+    
 
             for ($i = 0; $i < 10; $i++){
             $titleForMassAssignment = fake()->sentence();
