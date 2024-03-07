@@ -39,7 +39,7 @@ class TypeController extends Controller
             'slug' => 'nullable|max:1000',
         ]);
 
-        $post = Type::create($validationResultType);
+        $type = Type::create($validationResultType);
         // dd($validationResult);
 
         return redirect()->route('admin.types.show', ['type' => $type->slug]);
