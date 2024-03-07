@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 // models
 use App\Models\Post;
+use App\Models\Type;
+
 
 
 class PostController extends Controller
@@ -36,7 +38,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $types = Type::all();
+        return view('admin.posts.create',compact('types'));
     }
 
     /**
@@ -48,6 +51,7 @@ class PostController extends Controller
             'title' => 'required|max:64',
             'slug' => 'nullable|max:1000',
             'content' => 'nullable|max:1000',
+            'type_id' => 'nullable|exists:types,id'
         ]);
 
         $post = Post::create($validationResult);
@@ -76,6 +80,7 @@ class PostController extends Controller
             'title' => 'required|max:64',
             'slug' => 'nullable|max:1000',
             'content' => 'nullable|max:1000',
+            'type_id' => 'nullable|exists:types,id'
         ]);
 
         $post->update($validationResult);

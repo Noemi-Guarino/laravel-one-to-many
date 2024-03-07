@@ -39,7 +39,7 @@
                     <textarea class="form-control" id="slug" name="slug" rows="3" placeholder="enter the slug..."></textarea value="{{ old ('slug')}}">
                 </div>
 
-                {{-- <div class="mb-3">
+                <div class="mb-3">
                     <label for="type_id" class="form-label">Tipologia</label>
                     <select name="type_id" id="type_id" class="form-select">
                         <option
@@ -54,7 +54,7 @@
                             </option>
                         @endforeach
                     </select>
-                </div> --}}
+                </div>
 
                 <div class="mb-3">
                     <label for="content" class="form-label">content</label>
