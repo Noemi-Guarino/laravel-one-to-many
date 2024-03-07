@@ -5,13 +5,13 @@
 @section('main-content')
 <div class="my_container">
     <h1>
-        Post Create
+        Type Create
     </h1>
 
     <div class="row">
         <div class="col py-4">
             <div class="mb-4">
-                <a href="{{ route('admin.posts.index') }}" class="btn btn-primary">
+                <a href="{{ route('admin.types.index') }}" class="btn btn-primary">
                     Come back
                 </a>
             </div>
@@ -26,7 +26,7 @@
             </div>
             @endif
             
-            <form action="{{ route('admin.posts.store') }}" method="POST">
+            <form action="{{ route('admin.types.store') }}" method="POST">
                 @csrf
 
                 <div class="mb-3">
@@ -37,28 +37,6 @@
                 <div class="mb-3">
                     <label for="slug" class="form-label">slug</label>
                     <textarea class="form-control" id="slug" name="slug" rows="3" placeholder="enter the slug..."></textarea value="{{ old ('slug')}}">
-                </div>
-
-                {{-- <div class="mb-3">
-                    <label for="type_id" class="form-label">Tipologia</label>
-                    <select name="type_id" id="type_id" class="form-select">
-                        <option
-                            value="{{ old('type_id') }}">
-                            Seleziona una tipologia...
-                        </option>
-                        @foreach ( $types as $type )
-                            <option
-                            value="{{ $type->id }}"
-                            {{ old('type_id') }}>
-                            {{ $type->title }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div> --}}
-
-                <div class="mb-3">
-                    <label for="content" class="form-label">content</label>
-                    <textarea class="form-control" id="content" name="content" rows="3" placeholder="enter the content..."></textarea value="{{ old ('content')}}">
                 </div>
 
                 <div>

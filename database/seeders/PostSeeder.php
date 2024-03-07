@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 
 // models
 use App\Models\Post;
+use App\Models\Type;
+
 
 // helpers
 use Illuminate\Support\Str;
@@ -33,6 +35,7 @@ class PostSeeder extends Seeder
                 'title'=> $titleForMassAssignment,
                 'slug'=>$slugForMassAssignment,
                 'content'=> fake()->paragraph(),
+                'type_id'=> Type::inRandomOrder()->first()->id,
             ]);
         }
 

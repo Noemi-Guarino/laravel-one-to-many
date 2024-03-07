@@ -15,7 +15,10 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::all();
+
+        return view('admin.types.index', compact('types'));
+
     }
 
     /**
@@ -23,7 +26,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.types.create');
     }
 
     /**
@@ -31,31 +34,51 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validationResultType = $request->validate([
+            'title' => 'required|max:64',
+            'slug' => 'nullable|max:1000',
+        ]);
+
+        $post = Type::create($validationResultType);
+        // dd($validationResult);
+
+        return redirect()->route('admin.types.show', ['type' => $type->slug]);
     }
+
 
     /**
      * Display the specified resource.
      */
-    public function show(Type $type)
+    public function show(string $slug)
     {
-        //
+        $type = Type::where('slug', $slug)->firstOrFail();
+        return view('admin.types.show', compact('type'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Type $type)
+    public function edit(string $slug)
     {
-        //
+        $post = Type::where('slug', $slug)->firstOrFail();
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Type $type)
+    public function update(Request $request, string $slug)
     {
-        //
+        $type = Type::where('slug', $slug)->firstOrFail();
+        $validationResultType = $request->validate([
+            'title' => 'required|max:64',
+            'slug' => 'nullable|max:1000',
+            'content' => 'nullable|max:1000',
+        ]);
+
+        $type->update($validationResultType);
+
+        return redirect()->route('admin.types.show', ['category' => $type->id]);
     }
 
     /**
@@ -63,6 +86,8 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+
+        return redirect()->route('admin.types.index');
     }
 }
