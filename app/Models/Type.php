@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'slug',
+    ];
+
     public function posts(){
         return $this->hasMany(Post::class);
         //funzione che identifica la relazione 

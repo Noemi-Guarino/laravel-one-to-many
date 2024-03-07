@@ -60,7 +60,7 @@ class TypeController extends Controller
      */
     public function edit(string $slug)
     {
-        $post = Type::where('slug', $slug)->firstOrFail();
+        $type = Type::where('slug', $slug)->firstOrFail();
         return view('admin.types.edit', compact('type'));
     }
 
@@ -73,12 +73,11 @@ class TypeController extends Controller
         $validationResultType = $request->validate([
             'title' => 'required|max:64',
             'slug' => 'nullable|max:1000',
-            'content' => 'nullable|max:1000',
         ]);
 
         $type->update($validationResultType);
 
-        return redirect()->route('admin.types.show', ['category' => $type->id]);
+        return redirect()->route('admin.types.index');
     }
 
     /**

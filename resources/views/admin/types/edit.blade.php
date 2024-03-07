@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', 'Modifica il tuo post')
+@section('page-title', 'Modifica il tuo type')
 
 @section('main-content')
 <div class="my_container">
@@ -26,7 +26,7 @@
             </div>
             @endif
             
-            <form action="{{ route('admin.posts.update', ['post' => $type->slug ]) }}" method="POST">
+            <form action="{{ route('admin.types.update', ['type' => $type->slug ]) }}" method="POST">
                 @csrf
 
                 @method('PUT')
@@ -38,7 +38,7 @@
 
                 <div class="mb-3">
                     <label for="slug" class="form-label">slug</label>
-                    <textarea class="form-control" id="slug" name="slug" rows="3" placeholder="enter the slug..."></textarea value="{{ old ('title',$type->slug )}}">
+                    <textarea class="form-control" id="slug" name="slug" rows="3" placeholder="enter the slug..."></textarea value="{{ old ('title', $type->slug )}}">
                 </div>
 
                 <div>
