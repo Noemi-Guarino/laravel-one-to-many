@@ -66,8 +66,9 @@ class PostController extends Controller
      */
     public function edit(string $slug)
     {
+        $types = Type::all();
         $post = Post::where('slug', $slug)->firstOrFail();
-        return view('admin.posts.edit',compact('post'));
+        return view('admin.posts.edit',compact('post','types'));
     }
 
     /**

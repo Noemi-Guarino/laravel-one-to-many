@@ -46,6 +46,25 @@
                     <textarea class="form-control" id="content" name="content" rows="3" placeholder="enter the content..."></textarea value="{{ old ('title',$post->content)}}">
                 </div>
 
+                
+                <div class="mb-3">
+                    <label for="type_id" class="form-label">Tipologia</label>
+                    <select name="type_id" id="type_id" class="form-select">
+                        <option
+                            value="{{ old('type_id') }}">
+                            Seleziona una tipologia...
+                        </option>
+                        @foreach ( $types as $type )
+                            <option
+                            value="{{ $type->id }}"
+                            {{ old('type_id') }}>
+                            {{ $type->title }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+
                 <div>
                     <button type="submit" class="btn btn-success w-100">
                         update
